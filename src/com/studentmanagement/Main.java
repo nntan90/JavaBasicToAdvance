@@ -1,5 +1,6 @@
 package com.studentmanagement;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -35,11 +36,22 @@ public class Main {
                 case 6:
                     flag = false;
                     break;
+                case 7:
+                    covertArrayListToArray();
             }
         }
-
+        System.out.println("Chuong trinh ket thuc");
 
     }
+    public static void covertArrayListToArray(){
+        ArrayList<String> studentArrayList = studentList.getStudentList();
+        String [] studentArray = new String[studentArrayList.size()];
+        studentArray = studentArrayList.toArray(studentArray);
+        for(int i= 0; i< studentArray.length ; i++ ){
+            System.out.println(studentArray[i]);
+        }
+    }
+
     public static void addItem(){
         System.out.println("Ban da chon them sinh vien");
         System.out.println("Vui long nhap ten sinh vien");
@@ -50,19 +62,19 @@ public class Main {
 
     public static void modifyItem(){
         System.out.println("Ban da chon sua sinh vien");
-        System.out.println("Vui long nhap so thu tu sinh vien");
-        int index = scanner.nextInt();
+        System.out.println("Nhap ten sinh vien can sua thong tin: ");
         scanner.nextLine();
-        System.out.println("Nhap thong tin sinh vien moi");
+        String oldStudent = scanner.nextLine();
+        System.out.println("Nhap thong tin sinh vien moi: ");
         String newStudent = scanner.nextLine();
-        studentList.modifyStudent(index, newStudent);
+        studentList.modifyStudent(oldStudent, newStudent);
     }
     public static void removeItem(){
         System.out.println("Ban da chon xoa sinh vien");
-        System.out.println("Vui long nhap so thu tu sinh vien can xoa");
-        int index = scanner.nextInt();
+        System.out.println("Nhap ten sinh vien can xoa: ");
         scanner.nextLine();
-        studentList.removeStudent(index);
+        String student = scanner.nextLine();
+        studentList.removeStudent(student);
     }
 
     public static void findItem(){
@@ -70,8 +82,7 @@ public class Main {
         System.out.println("Vui long nhap ten sinh vien can tim");
         scanner.nextLine();
         String student = scanner.nextLine();
-        String findStudent = studentList.findStudent(student);
-        if(findStudent != null){
+        if(studentList.onFind(student)){
             System.out.println("Tim thay sinh vien " + student);
         } else {
             System.out.println("Khong tim thay sinh vien " + student);
