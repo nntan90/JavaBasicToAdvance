@@ -15,5 +15,8 @@ public class HelloWorld {
         Address addressEmployee = new Address("Huynh Thi Hai", "Ho Chi Minh","012355656334");
         Employee employee = new Employee("Tan", "10.000.000 vnd",addressEmployee);
         employee.display();
+
+        int row = 'A' + 1;
+        System.out.println("Test"+row);
     }
 }
